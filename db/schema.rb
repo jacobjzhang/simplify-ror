@@ -13,18 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20160223015552) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "author"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "book_img_file_name"
-    t.string   "book_img_content_type"
-    t.integer  "book_img_file_size"
-    t.datetime "book_img_updated_at"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160223015552) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
